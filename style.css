@@ -1,0 +1,95 @@
+:root{--bg:#f1f4f8;--ink:#0e1726;--muted:#55627a;--line:#dbe2ec;--brand:#2446e8;--brand-dark:#1932b8;--hot:#e8560c;--card:#fff;--deep:#0b1426}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;line-height:1.65;color:var(--ink);background:var(--bg)}
+a{color:var(--brand)}
+img,svg{max-width:100%}
+a:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+
+/* Шапка і меню (Flexbox) */
+.top{position:sticky;top:0;z-index:10;background:var(--deep);color:#fff}
+.top-wrap{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.9rem 1rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
+.brand::before{content:"";width:1.3rem;height:1.3rem;border-radius:5px;background:linear-gradient(135deg,var(--hot),var(--brand));box-shadow:0 0 0 3px rgba(255,255,255,.12)}
+.main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem .5rem}
+.main-nav a{display:block;color:#c9d3e6;text-decoration:none;padding:.35rem .9rem;border-radius:999px;transition:background .2s,color .2s}
+.main-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+.main-nav a.on{background:#fff;color:var(--deep);font-weight:600}
+
+.content{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 2rem}
+h1{font-size:1.8rem;line-height:1.15;letter-spacing:-.02em;margin-bottom:.75rem;color:var(--deep)}
+h2{font-size:1.15rem;margin-bottom:.4rem;color:var(--deep)}
+p{margin-bottom:1rem;color:var(--muted)}
+.content>h1+p{max-width:60ch}
+
+/* Головна */
+.banner{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:center;padding:1.6rem 1.2rem;margin-bottom:1.5rem;border-radius:20px;color:#fff;
+  background:linear-gradient(rgba(11,20,38,.88),rgba(11,20,38,.88)),repeating-linear-gradient(0deg,#1b2a4a 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,#1b2a4a 0 1px,transparent 1px 28px);background-color:var(--deep)}
+.banner h1{color:#fff;font-size:2rem}
+.banner p{color:#b8c4dc;max-width:46ch}
+.action{display:inline-block;background:var(--hot);color:#fff;padding:.75rem 1.5rem;border-radius:10px;text-decoration:none;font-weight:700;transition:background .2s}
+.action:hover{background:#c94806}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.shots img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;background:#fff}
+.shots img:first-child{grid-column:1/-1}
+
+.info-grid,.goods-grid,.steps-grid{display:grid;grid-template-columns:1fr;gap:1.1rem}
+.box{background:var(--card);padding:1.3rem;border-radius:14px;border:1px solid var(--line)}
+.info-grid .box{border-left:5px solid var(--brand)}
+.box p:last-child{margin-bottom:0}
+
+/* Каталог */
+.goods{position:relative;padding:0;overflow:hidden}
+.goods .thumb{position:relative;height:200px;background:linear-gradient(135deg,var(--deep),var(--brand));border-bottom:1px solid var(--line)}
+.goods .thumb img{display:block;width:100%;height:100%;object-fit:contain;background:#fff;padding:.4rem}
+.stock{position:absolute;z-index:1;top:.7rem;left:.7rem;background:#0f7a43;color:#fff;font-size:.8rem;font-weight:600;padding:.15rem .65rem;border-radius:999px}
+.goods h2,.goods .cost,.goods ul{margin-left:1.2rem;margin-right:1.2rem}
+.goods h2{margin-top:1rem}
+.cost{font-size:1.45rem;font-weight:800;color:var(--hot);margin-bottom:.6rem}
+.goods ul{list-style:none;font-size:.95rem;margin-bottom:1.2rem;color:var(--muted)}
+.goods li{padding:.45rem 0;border-top:1px solid var(--line)}
+
+/* Доставка: кроки з нумерацією і таблиця */
+.steps-grid{counter-reset:step}
+.steps-grid .box{counter-increment:step}
+.steps-grid .box::before{content:counter(step);display:flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;margin-bottom:.8rem;border-radius:50%;background:var(--brand);color:#fff;font-weight:700}
+.scroll{overflow-x:auto;margin-top:1.5rem;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.price-table{width:100%;border-collapse:collapse;min-width:480px}
+.price-table th,.price-table td{padding:.8rem 1rem;text-align:left;border-bottom:1px solid var(--line)}
+.price-table th{background:var(--deep);color:#fff;font-weight:600}
+.price-table td:first-child{font-weight:700;color:var(--deep)}
+.price-table tbody tr:last-child td{border-bottom:0}
+.price-table tbody tr:nth-child(even){background:#f7f9fc}
+
+.bottom{background:var(--deep);color:#8f9db8;text-align:center;padding:1.2rem 1rem}
+.bottom p{margin:0;color:inherit;font-size:.9rem}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Планшет */
+@media (min-width:640px){
+  .info-grid,.goods-grid,.steps-grid{grid-template-columns:repeat(2,1fr)}
+  h1{font-size:2.2rem}
+  .banner{padding:2.2rem 2rem}
+  .banner h1{font-size:2.5rem}
+}
+/* Десктоп */
+@media (min-width:1000px){
+  .top-wrap{flex-direction:row;justify-content:space-between;max-width:1120px;margin:0 auto}
+  .info-grid,.goods-grid{grid-template-columns:repeat(3,1fr)}
+  .steps-grid{grid-template-columns:repeat(4,1fr)}
+  .banner{grid-template-columns:1.05fr .95fr;gap:3rem;padding:3.5rem 3rem}
+  .banner h1{font-size:3rem}
+}
+
+/* Головна на десктопі: усе вміщується в один екран без скролу */
+@media (min-width:1000px){
+  .home{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+  .home .content{flex:1;display:flex;flex-direction:column;width:100%;padding:1rem 1rem 1.2rem}
+  .home .banner{flex:1;margin-bottom:1rem;padding:1.5rem 3rem}
+  .home .banner h1{font-size:2.6rem}
+  .home .shots img{aspect-ratio:auto;height:17vh;object-fit:contain}
+  .home .shots img:first-child{height:28vh}
+  .home .info-grid .box{padding:.9rem 1.2rem}
+  .home .info-grid p{margin-bottom:0;line-height:1.5}
+  .home .bottom{padding:.8rem 1rem}
+}
